@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,11 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Amazon.CDK" Version="1.2.0-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.IAM" Version="1.2.0-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.SNS" Version="1.2.0-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.SNS.Subscriptions" Version="1.2.0-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.SQS" Version="1.2.0-devpreview" />
+    <PackageReference Include="Amazon.CDK" Version="1.6.1-devpreview" />
+    <PackageReference Include="Amazon.CDK.AWS.Events" Version="1.6.1-devpreview" />
+    <PackageReference Include="Amazon.CDK.AWS.IAM" Version="1.6.1-devpreview" />
+    <PackageReference Include="Amazon.CDK.AWS.Lambda.EventSources" Version="1.6.1-devpreview" />
+    <PackageReference Include="Amazon.CDK.AWS.SNS" Version="1.6.1-devpreview" />
+    <PackageReference Include="Amazon.CDK.AWS.SNS.Subscriptions" Version="1.6.1-devpreview" />
+    <PackageReference Include="Amazon.CDK.AWS.SQS" Version="1.6.1-devpreview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HelloCdkLambda\HelloCdkLambda.csproj" />
   </ItemGroup>
 
 </Project>

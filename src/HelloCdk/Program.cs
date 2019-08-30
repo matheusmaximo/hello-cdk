@@ -1,11 +1,8 @@
 ﻿using Amazon.CDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace HelloCdk
 {
-    class Program
+    public static class Program
     {
         static void Main(string[] args)
         {
@@ -13,8 +10,7 @@ namespace HelloCdk
 
             // A CDK app can contain multiple stacks. You can view a list of all the stacks in your
             // app by typing `cdk list`.
-            new HelloStack(app, "hello-cdk-1", new StackProps());
-            new HelloStack(app, "hello-cdk-2", new StackProps());
+            _ = new HelloStack(app, "hello-cdk-1", new StackProps());
 
             app.Synth();
         }

@@ -1,5 +1,6 @@
 using Amazon.CDK;
 using Amazon.CDK.AWS.IAM;
+using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.SNS;
 using Amazon.CDK.AWS.SNS.Subscriptions;
 using Amazon.CDK.AWS.SQS;
@@ -10,28 +11,44 @@ namespace HelloCdk
     {
         public HelloStack(Construct parent, string id, IStackProps props) : base(parent, id, props)
         {
-            // The CDK includes built-in constructs for most resource types, such as Queues and Topics.
-            var queue = new Queue(this, "MyFirstQueue", new QueueProps
-            {
-                VisibilityTimeout = Duration.Seconds(300)
-            });
-
             var topic = new Topic(this, "MyFirstTopic", new TopicProps
             {
-                DisplayName = "My First Topic Yeah"
+                TopicName = "HelloCdk_Topic",
+                DisplayName = "My First Topic From HelloCdk"
             });
 
-            topic.AddSubscription(new SqsSubscription(queue, null));
-
-            // You can also define your own constructs and use them in your stack.
-            HelloConstruct hello = new HelloConstruct(this, "Buckets", new HelloConstructProps()
+            var queue = new Queue(this, "MyFirstQueue", new QueueProps
             {
-                BucketCount = 5
+                QueueName = "HelloCdk_Queue"
             });
+            topic.AddSubscription(new SqsSubscription(queue, new SqsSubscriptionProps
+            {
+                RawMessageDelivery = true
+            }));
 
-            // Create a new user with read access to the HelloConstruct resource.
-            User user = new User(this, "MyUser", new UserProps());
-            hello.GrantRead(user);
+            var functionType = typeof(HelloCdkLambda.Function);
+            var function = new Function(this, "MyFirstFunction", new FunctionProps
+            {
+                Code = Code.FromAsset($"./src/{nameof(HelloCdkLambda)}/bin/Release/netcoreapp2.1/publish"),
+                Runtime = Runtime.DOTNET_CORE_2_1,
+                Tracing = Tracing.ACTIVE,
+                Handler = $"{functionType.Assembly.GetName().Name}::{functionType.ToString()}::{nameof(HelloCdkLambda.Function.FunctionHandler)}",
+                MemorySize = 256,
+                Timeout = Duration.Seconds(10)
+            });
+            function.AddToRolePolicy(new PolicyStatement(new PolicyStatementProps
+            {
+                Actions = new[] { "sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes", "sqs:ChangeMessageVisibility" },
+                Resources = new[] { queue.QueueArn }
+            }));
+
+            _ = new EventSourceMapping(this, "MyFirstFunctionTrigger", new EventSourceMappingProps
+            {
+                EventSourceArn = queue.QueueArn,
+                BatchSize = 10,
+                Enabled = true,
+                Target = function
+            });
         }
     }
 }
