@@ -1,49 +1,41 @@
-# AWS Lambda Empty Function Project
+# My First CDK Project
 
-This starter project consists of:
-* Function.cs - class file containing a class with a single function handler method
-* aws-lambda-tools-defaults.json - default argument settings for use with Visual Studio and command line deployment tools for AWS
+## What is this project for?
 
-You may also have a test project depending on the options selected.
+I'm trying to use AWS CDK for .Net Core.
+This is a small Proof of Concept
 
-The generated function handler is a simple method accepting a string argument that returns the uppercase equivalent of the input string. Replace the body of this method, and parameters, to suit your needs. 
+## How to deploy it?
 
-## Here are some steps to follow from Visual Studio:
+Install CDK:
 
-To deploy your function to AWS Lambda, right click the project in Solution Explorer and select *Publish to AWS Lambda*.
+`npm i -g aws-cdk`
 
-To view your deployed function open its Function View window by double-clicking the function name shown beneath the AWS Lambda node in the AWS Explorer tree.
+Deploy CDK Toolkit
 
-To perform testing against your deployed function use the Test Invoke tab in the opened Function View window.
+`cdk bootstrap`
 
-To configure event sources for your deployed function, for example to have your function invoked when an object is created in an Amazon S3 bucket, use the Event Sources tab in the opened Function View window.
+On the root of this project, publish the Lambda project
 
-To update the runtime configuration of your deployed function use the Configuration tab in the opened Function View window.
+`dotnet publish .\src\HelloCdkLambda\HelloCdkLambda.csproj -c Release`
 
-To view execution logs of invocations of your function use the Logs tab in the opened Function View window.
+On the root of this project, build the stack
 
-## Here are some steps to follow to get started from the command line:
+`dotnet build .\src\HelloCdk\HelloCdk.csproj`
 
-Once you have edited your template and code you can deploy your application using the [Amazon.Lambda.Tools Global Tool](https://github.com/aws/aws-extensions-for-dotnet-cli#aws-lambda-amazonlambdatools) from the command line.
+Run Cdk Synthetise to see the template
 
-Install Amazon.Lambda.Tools Global Tools if not already installed.
-```
-    dotnet tool install -g Amazon.Lambda.Tools
-```
+`cdk synthesize`
 
-If already installed check if new version is available.
-```
-    dotnet tool update -g Amazon.Lambda.Tools
-```
+Deploy the stack
 
-Execute unit tests
-```
-    cd "HelloCdkLambda/test/HelloCdkLambda.Tests"
-    dotnet test
-```
+`cdk deploy`
 
-Deploy function to AWS Lambda
-```
-    cd "HelloCdkLambda/src/HelloCdkLambda"
-    dotnet lambda deploy-function
-```
+If asked, type Y and press enter, to confirm the permission changes
+
+## What is in this project
+
+It creates a SNS Topic called HelloCdk_Topic. When a message is sent to this topic, it will be forwarded to a SQS queue.
+It creates a SQS Queue called HelloCdk_Queue. When a message is sent to this queue, it will be delivered to a Lambda function.
+It creates a Lambda function called hello-cdk-1-MyFirstFunction. When a SQS message is delivered, this Lambda will record the content of message Body to CloudWatch logs.
+
