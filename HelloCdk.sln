@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloCdk", "src\HelloCdk\He
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{536019CE-2512-4E0C-B222-81DCC7215611}"
 	ProjectSection(SolutionItems) = preProject
-		Readme.md = Readme.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
