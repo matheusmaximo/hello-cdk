@@ -26,13 +26,13 @@ namespace HelloCdk
                 RawMessageDelivery = true
             }));
 
-            var functionType = typeof(HelloCdkLambda.Function);
+            var functionType = typeof(HelloCdkConsumerLambda.Function);
             var function = new Function(this, "MyFirstFunction", new FunctionProps
             {
-                Code = Code.FromAsset($"./src/{nameof(HelloCdkLambda)}/bin/Release/netcoreapp2.1/publish"),
+                Code = Code.FromAsset($"./src/{nameof(HelloCdkConsumerLambda)}/bin/Release/netcoreapp2.1/publish"),
                 Runtime = Runtime.DOTNET_CORE_2_1,
                 Tracing = Tracing.ACTIVE,
-                Handler = $"{functionType.Assembly.GetName().Name}::{functionType.ToString()}::{nameof(HelloCdkLambda.Function.FunctionHandler)}",
+                Handler = $"{functionType.Assembly.GetName().Name}::{functionType.ToString()}::{nameof(HelloCdkConsumerLambda.Function.FunctionHandler)}",
                 MemorySize = 256,
                 Timeout = Duration.Seconds(10)
             });
