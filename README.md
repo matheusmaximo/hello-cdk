@@ -31,14 +31,14 @@ Deploy the stack
 
 `cdk deploy`
 
-If asked, type Y and press enter, to confirm the permission changes
+If asked, type Y and press enter, to confirm to deploy changes
 
 ## What is in this project
 
-* It creates a SNS Topic called HelloCdk_Topic.
+* It creates a SNS Topic called HelloCdkTopic.
   * When a message is sent to this topic, it will be forwarded to a SQS queue.
-* It creates a SQS Queue called HelloCdk_Queue.
+* It creates a SQS Queue called HelloCdkQueue.
   * When a message is sent to this queue, it will be delivered to a Lambda function.
-* It creates a Lambda function called hello-cdk-1-MyFirstFunction.
+* It creates a Lambda function called HelloCdk-HelloCdkConsumerLambda.
   * When a SQS message is delivered, this Lambda will record the content of message Body to CloudWatch logs.
 

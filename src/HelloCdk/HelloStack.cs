@@ -11,15 +11,15 @@ namespace HelloCdk
     {
         public HelloStack(Construct parent, string id, IStackProps props) : base(parent, id, props)
         {
-            var topic = new Topic(this, "MyFirstTopic", new TopicProps
+            var topic = new Topic(this, "HelloCdkTopic", new TopicProps
             {
-                TopicName = "HelloCdk_Topic",
+                TopicName = "HelloCdkTopic",
                 DisplayName = "My First Topic From HelloCdk"
             });
 
-            var queue = new Queue(this, "MyFirstQueue", new QueueProps
+            var queue = new Queue(this, "HelloCdkQueue", new QueueProps
             {
-                QueueName = "HelloCdk_Queue"
+                QueueName = "HelloCdkQueue"
             });
             topic.AddSubscription(new SqsSubscription(queue, new SqsSubscriptionProps
             {
@@ -27,7 +27,7 @@ namespace HelloCdk
             }));
 
             var functionType = typeof(HelloCdkConsumerLambda.Function);
-            var function = new Function(this, "MyFirstFunction", new FunctionProps
+            var function = new Function(this, nameof(HelloCdkConsumerLambda), new FunctionProps
             {
                 Code = Code.FromAsset($"./src/{nameof(HelloCdkConsumerLambda)}/bin/Release/netcoreapp2.1/publish"),
                 Runtime = Runtime.DOTNET_CORE_2_1,
@@ -42,7 +42,7 @@ namespace HelloCdk
                 Resources = new[] { queue.QueueArn }
             }));
 
-            _ = new EventSourceMapping(this, "MyFirstFunctionTrigger", new EventSourceMappingProps
+            _ = new EventSourceMapping(this, $"{nameof(HelloCdkConsumerLambda)}Trigger", new EventSourceMappingProps
             {
                 EventSourceArn = queue.QueueArn,
                 BatchSize = 10,
