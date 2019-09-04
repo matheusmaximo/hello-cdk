@@ -4,7 +4,7 @@ using Amazon.Lambda.SQSEvents;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 
-namespace HelloCdkLambda
+namespace HelloCdkConsumerLambda
 {
     public class Function
     {

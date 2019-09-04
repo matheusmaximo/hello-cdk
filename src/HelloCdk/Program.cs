@@ -8,9 +8,7 @@ namespace HelloCdk
         {
             var app = new App(null);
 
-            // A CDK app can contain multiple stacks. You can view a list of all the stacks in your
-            // app by typing `cdk list`.
-            _ = new HelloStack(app, "hello-cdk-1", new StackProps());
+            _ = new HelloStack(app, nameof(HelloCdk), new StackProps());
 
             app.Synth();
         }

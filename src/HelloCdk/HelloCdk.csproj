@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HelloCdkLambda\HelloCdkLambda.csproj" />
+    <ProjectReference Include="..\HelloCdkConsumerLambda\HelloCdkConsumerLambda.csproj" />
   </ItemGroup>
 
 </Project>
