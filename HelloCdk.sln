@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloCdkConsumerLambda", "src\HelloCdkConsumerLambda\HelloCdkConsumerLambda.csproj", "{5344842A-E553-44EF-BBC1-3E9B35CA911B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloCdkConsumerLambda", "src\HelloCdkConsumerLambda\HelloCdkConsumerLambda.csproj", "{F32658E5-6396-4D48-BBCB-956473DA8B60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,16 +24,17 @@ Global
 		{8D593182-759B-4430-BAD2-ADDFACF16F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D593182-759B-4430-BAD2-ADDFACF16F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D593182-759B-4430-BAD2-ADDFACF16F92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5344842A-E553-44EF-BBC1-3E9B35CA911B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5344842A-E553-44EF-BBC1-3E9B35CA911B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5344842A-E553-44EF-BBC1-3E9B35CA911B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5344842A-E553-44EF-BBC1-3E9B35CA911B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F32658E5-6396-4D48-BBCB-956473DA8B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F32658E5-6396-4D48-BBCB-956473DA8B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F32658E5-6396-4D48-BBCB-956473DA8B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F32658E5-6396-4D48-BBCB-956473DA8B60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8D593182-759B-4430-BAD2-ADDFACF16F92} = {3833D073-A567-4328-A083-84D6DE96BC4E}
+		{F32658E5-6396-4D48-BBCB-956473DA8B60} = {3833D073-A567-4328-A083-84D6DE96BC4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2BEFA9F-B57A-4A2A-B772-1549786CD155}
