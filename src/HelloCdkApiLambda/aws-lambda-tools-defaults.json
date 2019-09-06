@@ -12,6 +12,5 @@
     "profile"       :"personal",
     "region"        : "eu-west-1",
 	  "configuration" : "Release",
-	  "framework"     : "netcoreapp2.1",
-    "template"      : "serverless.template"
+	  "framework"     : "netcoreapp2.1"
 }

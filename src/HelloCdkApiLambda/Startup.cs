@@ -1,9 +1,9 @@
-using HelloCdkApi.Infrastructure;
+using HelloCdkApiLambda.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HelloCdkApi
+namespace HelloCdkApiLambda
 {
     public class Startup
     {

@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace HelloCdkApi.Controllers
+namespace HelloCdkApiLambda.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
     [Route("[controller]")]
-    public class ProducerController
+    public class ProducerController : ControllerBase
     {
         /// <summary>
         /// Send a message to the topic
@@ -19,7 +19,8 @@ namespace HelloCdkApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Task<IActionResult> SendMessage(string message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Test: {message}");
+            return Task.FromResult<IActionResult>(Ok());
         }
     }
 }

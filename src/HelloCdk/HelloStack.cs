@@ -1,4 +1,5 @@
 using Amazon.CDK;
+using Amazon.CDK.AWS.APIGateway;
 using Amazon.CDK.AWS.IAM;
 using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.SNS;
@@ -17,6 +18,22 @@ namespace HelloCdk
                 DisplayName = "My First Topic From HelloCdk"
             });
 
+            var apiFunction = new Function(this, "HelloCdkApiLambda", new FunctionProps
+            {
+                Code = Code.FromAsset($"./src/HelloCdkApiLambda/bin/Release/netcoreapp2.1/publish"),
+                Runtime = Runtime.DOTNET_CORE_2_1,
+                Tracing = Tracing.ACTIVE,
+                Handler = $"HelloCdkApiLambda::HelloCdkApiLambda.LambdaEntryPoint::FunctionHandlerAsync",
+                MemorySize = 256,
+                Timeout = Duration.Seconds(10)
+            });
+            _ = new LambdaRestApi(this, "HelloCdkApi", new LambdaRestApiProps
+            { 
+              Handler = apiFunction,
+              Proxy = true
+            });
+
+
             var queue = new Queue(this, "HelloCdkQueue", new QueueProps
             {
                 QueueName = "HelloCdkQueue"
@@ -26,28 +43,27 @@ namespace HelloCdk
                 RawMessageDelivery = true
             }));
 
-            var functionType = typeof(HelloCdkConsumerLambda.Function);
-            var function = new Function(this, nameof(HelloCdkConsumerLambda), new FunctionProps
+            var consumerFunction = new Function(this, "HelloCdkConsumerLambda", new FunctionProps
             {
-                Code = Code.FromAsset($"./src/{nameof(HelloCdkConsumerLambda)}/bin/Release/netcoreapp2.1/publish"),
+                Code = Code.FromAsset($"./src/HelloCdkConsumerLambda/bin/Release/netcoreapp2.1/publish"),
                 Runtime = Runtime.DOTNET_CORE_2_1,
                 Tracing = Tracing.ACTIVE,
-                Handler = $"{functionType.Assembly.GetName().Name}::{functionType.ToString()}::{nameof(HelloCdkConsumerLambda.Function.FunctionHandler)}",
+                Handler = $"HelloCdkConsumerLambda::HelloCdkConsumerLambda.Function::FunctionHandler",
                 MemorySize = 256,
                 Timeout = Duration.Seconds(10)
             });
-            function.AddToRolePolicy(new PolicyStatement(new PolicyStatementProps
+            consumerFunction.AddToRolePolicy(new PolicyStatement(new PolicyStatementProps
             {
                 Actions = new[] { "sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes", "sqs:ChangeMessageVisibility" },
                 Resources = new[] { queue.QueueArn }
             }));
 
-            _ = new EventSourceMapping(this, $"{nameof(HelloCdkConsumerLambda)}Trigger", new EventSourceMappingProps
+            _ = new EventSourceMapping(this, $"HelloCdkConsumerLambdaTrigger", new EventSourceMappingProps
             {
                 EventSourceArn = queue.QueueArn,
                 BatchSize = 10,
                 Enabled = true,
-                Target = function
+                Target = consumerFunction
             });
         }
     }

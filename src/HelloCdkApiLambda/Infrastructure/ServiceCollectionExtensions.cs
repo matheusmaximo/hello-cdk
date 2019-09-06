@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
-namespace HelloCdkApi.Infrastructure
+namespace HelloCdkApiLambda.Infrastructure
 {
     public static class ServiceCollectionExtensions
     {

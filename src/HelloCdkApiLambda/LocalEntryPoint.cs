@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace HelloCdkApi
+namespace HelloCdkApiLambda
 {
     /// <summary>
     /// The Main function can be used to run the ASP.NET Core application locally using the Kestrel webserver.

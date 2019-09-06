@@ -1,6 +1,9 @@
+using System.Threading.Tasks;
+using Amazon.Lambda.APIGatewayEvents;
+using Amazon.Lambda.Core;
 using Microsoft.AspNetCore.Hosting;
 
-namespace HelloCdkApi
+namespace HelloCdkApiLambda
 {
     /// <summary>
     /// This class extends from APIGatewayProxyFunction which contains the method FunctionHandlerAsync which is the 

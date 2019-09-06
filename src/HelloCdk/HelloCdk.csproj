@@ -14,9 +14,4 @@
     <PackageReference Include="Amazon.CDK.AWS.SNS.Subscriptions" Version="1.6.1-devpreview" />
     <PackageReference Include="Amazon.CDK.AWS.SQS" Version="1.6.1-devpreview" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\HelloCdkConsumerLambda\HelloCdkConsumerLambda.csproj" />
-  </ItemGroup>
-
 </Project>
