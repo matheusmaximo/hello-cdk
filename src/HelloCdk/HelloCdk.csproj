@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Amazon.CDK" Version="1.6.1-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.Events" Version="1.6.1-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.IAM" Version="1.6.1-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.Lambda.EventSources" Version="1.6.1-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.SNS" Version="1.6.1-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.SNS.Subscriptions" Version="1.6.1-devpreview" />
-    <PackageReference Include="Amazon.CDK.AWS.SQS" Version="1.6.1-devpreview" />
+    <PackageReference Include="Amazon.CDK" Version="1.41.0" />
+    <PackageReference Include="Amazon.CDK.AWS.Events" Version="1.41.0" />
+    <PackageReference Include="Amazon.CDK.AWS.IAM" Version="1.41.0" />
+    <PackageReference Include="Amazon.CDK.AWS.Lambda.EventSources" Version="1.41.0" />
+    <PackageReference Include="Amazon.CDK.AWS.SNS" Version="1.41.0" />
+    <PackageReference Include="Amazon.CDK.AWS.SNS.Subscriptions" Version="1.41.0" />
+    <PackageReference Include="Amazon.CDK.AWS.SQS" Version="1.41.0" />
   </ItemGroup>
 
   <ItemGroup>
