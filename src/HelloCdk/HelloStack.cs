@@ -32,7 +32,7 @@ namespace HelloCdk
                 Code = Code.FromAsset($"./src/{nameof(HelloCdkConsumerLambda)}/bin/Release/netcoreapp2.1/publish"),
                 Runtime = Runtime.DOTNET_CORE_2_1,
                 Tracing = Tracing.ACTIVE,
-                Handler = $"{functionType.Assembly.GetName().Name}::{functionType.ToString()}::{nameof(HelloCdkConsumerLambda.Function.FunctionHandler)}",
+                Handler = $"{functionType.Assembly.GetName().Name}::{functionType}::{nameof(HelloCdkConsumerLambda.Function.FunctionHandler)}",
                 MemorySize = 256,
                 Timeout = Duration.Seconds(10)
             });
